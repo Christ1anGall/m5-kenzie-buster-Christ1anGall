@@ -7,5 +7,5 @@ class User(AbstractUser):
     email = models.CharField(max_length=127, unique=True, null=False)
     first_name = models.CharField(max_length=50, null=False)
     last_name = models.CharField(max_length=50, null=False)
-    birthdate = models.DateTimeField(null=True)
-    is_employee = models.BooleanField(default=False, null=True)
+    birthdate = models.DateField(null=True)
+    is_employee = models.BooleanField(null=True, default=False)
