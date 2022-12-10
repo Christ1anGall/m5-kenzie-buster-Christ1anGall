@@ -3,12 +3,15 @@ from rest_framework.views import APIView, Request, Response, status
 from .serializers import UserSerializer, LoginSerializer, SuperUserSerializer
 from .models import User
 from django.contrib.auth import authenticate
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 class RegisterView(APIView):
     def post(self, request: Request) -> Response:
 
-        if request.data['is_employee']:
+        if request.data["is_employee"]:
             serializer = SuperUserSerializer(data=request.data)
         else:
             serializer = UserSerializer(data=request.data)
@@ -22,17 +25,5 @@ class RegisterView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class LoginView(APIView):
-    def post(self, request: Request):
-        serializer = LoginSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            user = authenticate(
-                username=serializer.validated_data['username'],
-                password=serializer.validated_data['password'])
-
-            if not user:
-                return Response({'detail': 'invalid login'}, status=status.HTTP_403_FORBIDDEN)
-        return Response({'detail': 'login'}, status=status.HTTP_202_ACCEPTED)
-            
-            
-            
+class LoginView(TokenObtainPairView):
+    ...

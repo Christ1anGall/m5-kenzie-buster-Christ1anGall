@@ -8,6 +8,7 @@ colorama==0.4.6
 decorator==5.1.1
 Django==4.1.4
 djangorestframework==3.14.0
+djangorestframework-simplejwt==5.2.2
 exceptiongroup==1.0.4
 executing==1.2.0
 iniconfig==1.1.1
@@ -23,7 +24,9 @@ platformdirs==2.6.0
 pluggy==1.0.0
 prompt-toolkit==3.0.36
 pure-eval==0.2.2
+pycodestyle==2.10.0
 Pygments==2.13.0
+PyJWT==2.6.0
 pytest==7.2.0
 pytest-django==4.5.2
 pytest-testdox==3.0.1
