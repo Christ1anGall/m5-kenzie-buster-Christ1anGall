@@ -22,8 +22,8 @@ class UserSerializer(serializers.Serializer):
     last_name = serializers.CharField(max_length=50)
 
     birthdate = serializers.DateField(allow_null=False)
-    is_employee = (serializers.BooleanField(),)
-    is_superuser = (serializers.BooleanField(read_only=True),)
+    is_employee = serializers.BooleanField()
+    is_superuser = serializers.BooleanField(read_only=True)
 
     def create(self, validated_data: dict):
         user = User.objects.create_user(**validated_data)
@@ -49,7 +49,7 @@ class SuperUserSerializer(serializers.Serializer):
     last_name = serializers.CharField(max_length=50)
 
     birthdate = serializers.DateField(allow_null=False)
-    is_employee = (serializers.BooleanField(),)
+    is_employee = serializers.BooleanField()
     is_superuser = serializers.BooleanField(read_only=True)
 
     def create(self, validated_data: dict):
