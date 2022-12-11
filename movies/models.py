@@ -25,6 +25,10 @@ class Movie(models.Model):
         "users.User", through="movies.MovieOrder", related_name="buyedMovies"
     )
 
+    user = models.ForeignKey(
+        "users.User", on_delete=models.CASCADE, related_name="added_byUser"
+    )
+
 
 class MovieOrder(models.Model):
     buyed_at = models.DateTimeField(editable=False, auto_now_add=True)

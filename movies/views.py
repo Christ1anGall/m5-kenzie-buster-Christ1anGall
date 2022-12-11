@@ -24,7 +24,7 @@ class MovieView(APIView):
         print("=" * 100)
         print(request.user.email)
         print("=" * 100)
-        serializer.save(added_by=request.user.email)
+        serializer.save(added_by=request.user.email, user=request.user)
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
