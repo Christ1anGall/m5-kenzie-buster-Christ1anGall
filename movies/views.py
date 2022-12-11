@@ -5,11 +5,12 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .serializers import MovieSerializer, OrderSerializer
 from django.shortcuts import get_object_or_404
 from .models import Movie
+from .permissions import IsAdminOrReadOnly
 
 
 class MovieView(APIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
 
     def get(self, request: Request) -> Response:
         movie = Movie.objects.all()
@@ -30,7 +31,7 @@ class MovieView(APIView):
 
 class MovieDetailView(APIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
 
     def get(self, request: Request, movie_id: int) -> Response:
         movie = get_object_or_404(Movie, id=movie_id)
@@ -47,7 +48,7 @@ class MovieDetailView(APIView):
 
 class OrderMoviesView(APIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
 
     def post(self, request: Request, movie_id: int) -> Response:
         movie_obj = get_object_or_404(Movie, pk=movie_id)

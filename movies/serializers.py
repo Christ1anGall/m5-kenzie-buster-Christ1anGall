@@ -6,9 +6,9 @@ from .models import Movie, MovieOrder
 class MovieSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     title = serializers.CharField(max_length=127)
-    duration = serializers.CharField(max_length=10)
-    rating = serializers.CharField()
-    synopsis = serializers.CharField()
+    duration = serializers.CharField(max_length=10, required=False)
+    rating = serializers.CharField(required=False)
+    synopsis = serializers.CharField(required=False)
     added_by = serializers.CharField(read_only=True)
 
     def create(self, validated_data: dict) -> Movie:
