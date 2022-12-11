@@ -21,7 +21,7 @@ class OrderSerializer(serializers.Serializer):
     title = serializers.SerializerMethodField()
     buyed_by = serializers.SerializerMethodField()
     buyed_at = serializers.CharField(read_only=True)
-    price = serializers.FloatField()
+    price = serializers.DecimalField(max_digits=8, decimal_places=2)
 
     def get_title(self, obj: MovieOrder):
         return obj.movie.title
